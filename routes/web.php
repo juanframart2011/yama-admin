@@ -17,10 +17,18 @@ Route::get('/', function () {
 
     $data["metaTitle"] = "Login";
     return view( 'welcome', $data );
-});
+})->name( "home" );
 
-Route::get('template', function () {
+Route::post( 'login', [ 'as' => 'login', 'uses' => 'App\Http\Controllers\User@login' ] );
+Route::get( 'logout', [ 'as' => 'logout', 'uses' => 'App\Http\Controllers\User@logout' ] );
 
-    $data["metaTitle"] = "Login";
-    return view( 'template', $data );
+Route::group(['prefix' => 'admin', 'middleware' => 'validAdmin'], function(){
+
+    Route::get( 'dashboard', [ 'as' => 'dashboard', 'uses' => 'App\Http\Controllers\Home@home' ] );
+
+    /*require __DIR__ . '/admin/pre-raffle.php';
+    require __DIR__ . '/admin/raffle.php';
+    require __DIR__ . '/admin/report.php';
+    require __DIR__ . '/admin/ticket.php';
+    require __DIR__ . '/admin/user.php';*/
 });

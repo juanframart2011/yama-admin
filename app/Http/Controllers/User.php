@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
+use App\Models\Rol as RolModel;
+use App\Models\User as UserModel;
+
+use Validator;
+
 class User extends Controller
 {
     public function login( Request $request ){
@@ -26,7 +31,7 @@ class User extends Controller
         if( $validate->fails() ){
 
             $errors = $validate->errors()->all();
-            return redirect()->route( 'admin' )
+            return redirect()->route( 'home' )
             ->withInput()
             ->withErrors( $errors );
         }
@@ -47,12 +52,12 @@ class User extends Controller
                     env( "APP_CLAVE" ) . 'r01' => Crypt::encryptString( $userResult[0]->rol_id )
                 ]);
 
-                return redirect()->route( 'raffle' );
+                return redirect()->route( 'dashboard' );
             }
             else{
                 $validate->errors()->add( 'login', 'Los datos son incorrectos' );
                 $errors = $validate->errors()->all();
-                return redirect()->route( 'admin' )
+                return redirect()->route( 'home' )
                 ->withInput()
                 ->withErrors($errors);
             }
@@ -63,6 +68,6 @@ class User extends Controller
 
         $request->session()->flush();
 
-        return redirect()->route( 'admin' );
+        return redirect()->route( 'home' );
     }
 }

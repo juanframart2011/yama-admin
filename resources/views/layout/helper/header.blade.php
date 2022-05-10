@@ -8,7 +8,7 @@
         @if( !empty( session( env( "APP_CLAVE" ) . '3m41l' ) ) )
 	        <nav>
 	            <ul class="menu">
-	                <li class="menu-item"><a href="" target="_blank" class="menu-link">LOG OUT</a></li>
+	                <li class="menu-item"><a href="{{ route( 'logout' ) }}" class="menu-link">LOG OUT</a></li>
 	            </ul>
 	        </nav>
 		@endif

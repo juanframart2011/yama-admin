@@ -22,6 +22,10 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+main{
+    height: 75vh;
+}
+
 @media screen and (max-width: 575.98px) {
     body {
         font-size: 13px;
@@ -29,7 +33,7 @@ body {
 }
 
 .main-title {
-    font-size: 1.8em;
+    font-size: 1em;
     letter-spacing: 1.8px;
     font-weight: 600;
 }
@@ -231,30 +235,26 @@ body {
     }
 }
 
-/* Contact
+/* form-login
 ======================================================================================================================= */
-.contact {
+.form-login {
     background: white;
     margin: 80px 0 0 0;
+    margin-top: 30em;
+    padding-bottom: 2em;
 }
 
-.contact .line {
-    border-right: 2px solid #173D53;
-    max-height: 100px;
-    margin: 80px 0 0 0;
-}
-
-.contact .contact-title {
-    text-align: right;
+.form-login .contact-title {
+    text-align: center;
     margin: 30px 0;
     padding: 0 60px 0 0;
 }
 
-.contact #contact-form {
+.form-login #contact-form {
     padding: 0 0 0 60px;
 }
 
-.contact .contact-form__content {
+.form-login .contact-form__content {
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: (1fr)[2];
@@ -262,15 +262,15 @@ body {
     gap: 0 2rem;
 }
 
-.contact .form-group {
+.form-login .form-group {
     margin: 0 0 2rem 0;
 }
 
-.contact .form-group:nth-child(n + 7) {
+.form-login .form-group:nth-child(n + 7) {
     margin: 0 0 2.6rem 0;
 }
 
-.contact .input-control {
+.form-login .input-control {
     border-radius: 0;
     font-style: italic;
     font-size: .9em;
@@ -280,13 +280,13 @@ body {
     height: 30px;
 }
 
-.contact .input-control:focus {
+.form-login .input-control:focus {
     border-bottom: 2px solid #E1801F;
     -webkit-box-shadow: none;
     box-shadow: none;
 }
 
-.contact .input-control.message {
+.form-login .input-control.message {
     resize: none;
     margin: 0 0 2rem 0;
     height: auto;
@@ -294,49 +294,43 @@ body {
     padding: 2px 5px;
 }
 
-.contact .input-control.message:focus {
+.form-login .input-control.message:focus {
     border: 2px solid #E1801F;
 }
 
-.contact .info-contact {
+.form-login .info-contact {
     font-weight: 400;
 }
 
-.contact .submit-control {
+.form-login .submit-control {
     border: none;
-    background: #E1801F;
+    background: white;
     font-style: normal;
     font-weight: 600;
-    color: #FFFFFF;
+    color: #E1801F;
     height: auto;
-    text-align: center;
+    text-align: left;
     padding: 6px 0;
     border-radius: 0;
     font-size: .9em;
 }
 
-.contact .submit-control:focus {
+.form-login .submit-control:focus {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
 
 @media screen and (max-width: 767.98px) {
-    .contact {
+    .form-login {
         margin: 40px 0 0 0;
     }
 
-    .contact .contact-title {
+    .form-login .contact-title {
         text-align: center;
         padding: 0;
     }
 
-    .contact .line {
-        border-right: none;
-        height: auto;
-        margin: 0;
-    }
-
-    .contact #contact-form {
+    .form-login #contact-form {
         padding: 0;
     }
 }
@@ -393,6 +387,9 @@ body {
 ======================================================================================================================= */
 .login {
     background-image: url("../img/bg-login.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
     margin: 114px 0 0 0;
 }
 

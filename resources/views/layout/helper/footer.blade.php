@@ -30,5 +30,5 @@
             </div>
         </div>
     </div>
-    <img data-src="{{ asset( 'img/logo-footer.svg' ) }}" alt="Logo Yama" class="footer-logo lazy">
+    <img data-src="{{ asset( 'img/logo-footer.svg' ) }}" src="{{ asset( 'img/logo-footer.svg' ) }}" alt="Logo Yama" class="footer-logo lazy">
 </footer>
