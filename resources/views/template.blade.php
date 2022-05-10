@@ -135,42 +135,7 @@
         </header>
 
         <main>
-            <!-- Home Banner -->
-            <section class="home" data-aos="zoom-out-down" data-aos-duration="1000">
-                <div class="swiper-container swiper-banner">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="dist/img/bg/banner-home-slider6.jpg" alt="Yama Desarrolladora Inmobiliaria" class="banner-img">
-                            <!-- <h1 class="home-title">SOMOS UNA EMPRESA LÍDER Y PIONERA <br> EN EL SECTOR DE LA CONSTRUCCIÓN <br> CON 30 AÑOS DE EXPERIENCIA. <br> NOS ESPECIALIZAMOS EN EL <br> DESARROLLO DE EDIFICIOS <br> CORPORATIVOS, RESIDENCIALES Y <br> MIXTOS PARA ATENDER CUALQUIER <br> TIPO DE NECESIDAD EN LA CDMX.</h1> -->
-                        </div>
-                        <div class="swiper-slide">
-                            <video src="dist/img/bg/banner-video.mp4" class="banner-img banner-video" id="player" loop></video>
-                            <a href="departamentos-en-venta/bosques-santa-fe-residenciall" class="link-video"></a>
-                        </div>
-                    </div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                </div>
-            </section>
 
-            <!-- Home About Us -->
-            <section class="about-us" id="about-us">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-12 col-md-4 line" data-aos="fade-right" data-aos-duration="2500">
-                            <h2 class="about-us-title main-title">NOSOTROS</h2>
-                        </div>
-                        <div class="col-12 col-md-8">
-                            <p class="about-us-text">Somos una empresa mexicana dedicada al sector de la construcción con más de 30 años de experiencia. Actualmente, estamos desarrollando más de 200,000 m2 en espacios corporativos, residenciales y mixtos en los corredores más importantes de la Ciudad de México.</p>
-                        </div>
-                        <div class="col-12 col-lg-11" data-aos="zoom-in" data-aos-duration="1500">
-                            <a href="https://www.youtube.com/watch?v=Iqjo_x5JqEo" class="video fresco" data-fresco-type="youtube">
-                            <img data-src="dist/img/bg/poster-video-home.jpg" alt="Historia Yama" class="cover-img lazy">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             <section class="links">
                 <div class="container-fluid">
@@ -266,28 +231,18 @@
             </div>
             <img data-src="/dist/img/misc/logo3.svg" alt="Logo Yama" class="footer-logo lazy">
         </footer>
-        
+
         <!-- Jquery Core Scripts -->
         <script src="dist/js/jquery.min.js"></script>
         <!-- Swipper Scripts -->
         <script src="dist/js/swiper.min.js"></script>
-        <!-- Fresco Scripts -->
-        <script src="dist/js/fresco.min.js"></script>
         <!-- Aos Scripts -->
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <!-- Sweet Alert Scripts -->
-        <script src="dist/js/sweetalert2.min.js"></script>
-        <!-- Vivus Scripts -->
-        <script src="dist/js/vivus.min.js"></script>
-        <!-- Menu Light Scripts -->
         <script src="dist/js/mmenu-light.js"></script>
-        <!-- Plyr Scripts -->
-        <script src="dist/js/plyr.min.js"></script>
-        <!-- Moment Scripts -->
         <script src="dist/js/moment.min.js"></script>
         <script src="dist/js/moment-timezone-with-data.min.js"></script>
         <!-- Own Scripts -->
-        <script src="dist/js/main.js?v35"></script>
-        <script src="dist/js/home.js?v35"></script>
+        <script src="dist/js/main.js"></script>
+        <script src="dist/js/home.js"></script>
     </body>
 </html>
