@@ -24,7 +24,7 @@
                         </a>
                     </li>
                 </ul>
-                <p class="footer-text"> <a href="/aviso-privacidad">Aviso de privacidad</a> </p>
+                <p class="footer-text"> <a href="https://www.yama.mx/aviso-privacidad">Aviso de privacidad</a> </p>
                 <p class="footer-text">© Yama Desarrolladora Inmobiliaria 2020. Todos los Derechos Reservados.</p>
                 <p class="footer-text">La navegación de este sitio constituye la aceptación de los términos y condiciones</p>
             </div>

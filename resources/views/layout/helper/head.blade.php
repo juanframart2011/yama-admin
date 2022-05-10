@@ -29,7 +29,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="preload" as="font">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Icons  -->
+    <!-- Font Awesome -->
+    <link href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" rel="preload" as="font">
+    <link href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" rel="stylesheet">
+
+    <!-- Aos CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="preload" as="style">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <!-- Bootstrap CSS -->
     <link href="{{ asset( 'css/bootstrap.min.css' ) }}" rel="stylesheet">
     <link href="{{ asset( 'css/main.css' ) }}" rel="stylesheet">
@@ -40,6 +47,13 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- Menu Light CSS -->
+    <link href="dist/css/mmenu-light.css" rel="preload" as="style">
+    <link href="dist/css/mmenu-light.css" rel="stylesheet">
+
+    <link href="dist/css/main.css" rel="preload" as="style">
+    <link href="dist/css/main.css" rel="stylesheet">
 
     <script>
         var baseUrl = "{{ env( "APP_URL" ) }}";
