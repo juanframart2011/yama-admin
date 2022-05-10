@@ -39,31 +39,6 @@
                     </div>
                 </section>
             </section>
-
-
-            <section class="links">
-                <div class="container-fluid">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-11 col-xl-8">
-                            <div class="row">
-                                <div class="col-12 col-sm-4 line">
-                                    <div class="content">
-                                        <h2 class="links-title">DESARROLLOS</h2>
-                                        <ul class="list" id="footer-corporative">
-                                            <li class="list-item"> <span>Corporativos:</span></li>
-                                            <!-- dynamically generated with javascript (main.js) -->
-                                        </ul>
-                                        <ul class="list" id="footer-residential">
-                                            <li class="list-item"> <span>Residenciales:</span></li>
-                                            <!-- dynamically generated with javascript (main.js) -->
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </main>
 
         @include( "layout.helper.footer" )
