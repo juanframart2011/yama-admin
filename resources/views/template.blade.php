@@ -239,9 +239,6 @@
         <!-- Aos Scripts -->
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script src="dist/js/mmenu-light.js"></script>
-        <script src="dist/js/moment.min.js"></script>
-        <script src="dist/js/moment-timezone-with-data.min.js"></script>
-        <!-- Own Scripts -->
         <script src="dist/js/main.js"></script>
         <script src="dist/js/home.js"></script>
     </body>
