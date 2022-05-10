@@ -1,0 +1,216 @@
+/* Header 
+============================================================================================================================= */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  &.active {
+    background-color: rgba(0,0,0,0.8);
+		animation-duration: 1.5s;
+		animation-name: slidein;
+		position: fixed;
+    z-index: 1000;
+    .header-top {
+      margin-top: -47px;
+    }
+    .submenu {
+      top: 50px;
+    }
+  }
+  .header-top {
+    background-color: $secondary3;
+    display: flex;
+    justify-content: flex-end;
+    padding: .6rem 10%;
+    transition: all .1s;
+  }
+  .text-contact {
+    margin: 2px 0 0 0;
+  }
+  .header-main {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 10%;
+    background-image: url('../img/misc/bgheader.png');
+    position: relative;
+  }
+  .logo {
+    width: 141px;
+  }
+  .social-media, .menu {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .social-media {
+    margin: 0 0 0 160px;
+    opacity: .8;
+    font-size: 1.3em;
+  }
+  .social-media-item {
+    margin:  0 0 0 25px;
+  }
+  .menu {
+    margin: 7px 0 0 0;
+    font-weight: 500;
+  }
+  .menu-item {
+    margin: 0 0 0 30px;
+    transition: all .3s;
+    &:hover .submenu {
+      visibility: visible;
+      opacity: 1;
+      margin-top: 0px;
+      transform: scale(1);
+    }
+    .active {
+      font-weight: 700;
+    }
+  }
+  .menu-link {
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 2px;
+      width: 0;
+      background-color: $primary1;
+      transition: all .5s;
+    }
+    &:hover::after {
+      width: 40px;
+    }
+  }
+  .submenu {
+    z-index: 200;
+    opacity: 0;
+    transform: scale(.97);
+    visibility: hidden;
+    position: absolute;
+    margin: 0;
+    margin-top: 15px;
+    padding: 5px 0;
+    top: 45px;
+    list-style: none;
+    background: $white;
+    width: auto;
+    transition: all .3s;
+    box-shadow: 2px 2px 5px #AAAAAA;
+    &::before{
+      content: "";
+      position: absolute;
+      border-left:5px solid transparent;
+      border-right:5px solid transparent;
+      border-bottom:5px solid $white;
+      top: -5px;
+      left: 10px
+    }
+  }
+  .submenu-item {
+    &:nth-child(6) {
+      position: relative;
+      &::after {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        height: 1px;
+        background-color: $primary2;
+        content: "";
+      }
+    }
+    &:hover {
+      background-color: #F2EBE1;
+    }
+  }
+  .submenu-link {
+    width: 100%;
+    display: inline-block;
+    padding: 10px 15px;
+    br {
+      display: none;
+    }
+  }
+  .menu-mobile {
+    display: none;
+    width: 30px;
+    position: absolute;
+	  top: 25px;
+    right: 5%;
+    &::before, &::after {
+      content: '';
+	    display: block;
+	    background: $primary1;
+	    height: 2px;
+    }
+    span {
+      background: $primary1;
+	    display: block;
+	    height: 2px;
+	    margin: 5px 0;
+    }
+  }
+}
+@media screen and (max-width: $media-bp-lg) {
+  .header {
+    .menu {
+      display: none;
+    }
+    .menu-mobile {
+      display: block;
+    }
+  }
+}
+@media screen and (max-width: $media-bp-md) {
+  .header {
+    .header-top {
+      padding: .6rem 5%;
+      justify-content: space-between;
+    }
+    .header-main {
+      padding: 1rem 5%;
+    }
+    // .menu {
+    //   display: none;
+    // }
+    // .menu-mobile {
+    //   display: block;
+    // }
+  }
+}
+
+@media screen and (max-width: $media-bp-xs) {
+  .header {
+    &.active {
+      .header-top {
+        margin-top: -41px;
+      }
+      .submenu {
+        top: 50px;
+      }
+    }
+    .header-top {
+      flex-direction: column;
+    }
+    .social-media {
+      display: none;
+    }
+    .text-contact {
+      text-align: center;
+    }
+    .logo {
+      width: 100px;
+    }
+    .menu-mobile {
+      width: 24px;
+      top: 20px;
+    }
+  }
+}

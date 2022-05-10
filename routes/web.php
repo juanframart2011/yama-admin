@@ -14,5 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $data["metaTitle"] = "Login";
+    return view( 'welcome', $data );
+});
+
+Route::get('template', function () {
+
+    $data["metaTitle"] = "Login";
+    return view( 'template', $data );
 });

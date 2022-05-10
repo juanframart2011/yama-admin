@@ -1,0 +1,64 @@
+.certifications{
+    margin: 160px 0 0 0;
+    position: relative;
+}
+
+.title-cert{
+    font-size: 4.5rem;
+    letter-spacing: 0.25rem;
+}
+
+.subtitle-cert{
+    font-size: 1.5rem;
+    margin: 1.5rem 0;
+    letter-spacing: 0.25rem;
+}
+
+.caption-cert{
+    margin: 0.5rem 0;
+    font-size: 1.15rem;
+}
+
+.bg-leed{
+    background-image: url(../img/certifications/logo-green-deg.jpg);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+}
+
+.bg-well{
+    background-image: url(../img/certifications/logo-well-deg.jpg);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+}
+
+.leed p, .well p{
+    margin-left: 0.85rem;
+}
+
+.bg-weel{
+    background-image: url(../img/certifications/logo-well-deg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.logotype{
+    height: 240px;
+}
+
+@media only screen and (max-width: 600px) {
+    .title-cert{
+        font-size: 2.5rem;
+        letter-spacing: normal;
+    }
+    .subtitle-cert{
+        font-size: 1rem;
+        margin: 0.65rem;
+        letter-spacing: normal;
+    }
+    .caption-cert{
+        font-size: 0.8rem;
+    }
+}
+

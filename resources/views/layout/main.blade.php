@@ -4,9 +4,9 @@
 
     <body>
 
-        <div class="container-fluid">       
+        @include( "layout.helper.header" )
 
-            @include( "layout.helper.header" )
+        <div class="container-fluid">
 
             @yield( "content" )
 

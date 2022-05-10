@@ -1,0 +1,40 @@
+/* Footer 
+======================================================================================================================= */
+.footer {
+  background-image: linear-gradient(to right, #173D53, #778080);
+  padding: 1rem 0;
+  position: relative;
+  color: $white;
+  .social-media {
+    list-style: none;
+    margin: 0 0 10px 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    font-size: 1.3em;
+    &-item {
+      margin: 0 7px;
+    }
+  }
+  .footer-text {
+    margin: 0;
+    font-size: .8em;
+    line-height: 1.3;
+    opacity: .6;
+    font-style: italic;
+  }
+  .footer-logo {
+    position: absolute;
+    bottom: 19px;
+    right: 30px;
+    width: 95px;
+  }
+}
+
+@media screen and (max-width: $media-bp-xs) {
+  .footer {
+    .footer-logo {
+      display: none;
+    }
+  }
+}
