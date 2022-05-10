@@ -39,7 +39,6 @@
 
     <!-- Bootstrap CSS -->
     <link href="{{ asset( 'css/bootstrap.min.css' ) }}" rel="stylesheet">
-    <link href="{{ asset( 'css/main.css' ) }}" rel="stylesheet">
 
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
@@ -48,12 +47,8 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Menu Light CSS -->
-    <link href="dist/css/mmenu-light.css" rel="preload" as="style">
-    <link href="dist/css/mmenu-light.css" rel="stylesheet">
-
-    <link href="dist/css/main.css" rel="preload" as="style">
-    <link href="dist/css/main.css" rel="stylesheet">
+    <link href="{{ asset( 'css/main.css' ) }}" rel="preload" as="style">
+    <link href="{{ asset( 'css/main.css' ) }}" rel="stylesheet">
 
     <script>
         var baseUrl = "{{ env( "APP_URL" ) }}";
