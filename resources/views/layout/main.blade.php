@@ -86,7 +86,7 @@
                         </div>
                         <div class="pull-left info">
                             <p>{{ session( env( "APP_CLAVE" ) . 'n4m3' ) . ' ' . session( env( "APP_CLAVE" ) . 'l437-n4m3' ) }}</p>
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                            <a href="#">{{ session( env( "APP_CLAVE" ) . 'pr0f1l3' ) }}</a>
                         </div>
                     </div>
                     <ul class="list-sidebar bg-defoult">

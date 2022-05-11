@@ -12,6 +12,11 @@ class User extends Model
     protected $table = 'user';
     public $timestamps = false;
 
+    public function profile(){
+
+        return $this->belongsTo( 'App\Models\Profile', 'profile_id', 'id' );
+    }
+    
     public function rol(){
 
         return $this->belongsTo( 'App\Models\Rol', 'rol_id', 'id' );
