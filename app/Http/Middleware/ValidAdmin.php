@@ -17,6 +17,7 @@ class ValidAdmin
      */
     public function handle(Request $request, Closure $next)
     {
+
         if( Crypt::decryptString( session( env( "APP_CLAVE" ) . 'r01' ) ) != 1 ){
 
             return redirect( '/' );
