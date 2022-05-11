@@ -13,7 +13,7 @@ $( document ).ready( function(){
         $( "#user, #password" ).removeClass( "is-invalid" );
         formAlertLogin.html( '' ).removeClass( 'alert-danger, alert-success' ).addClass( "hidden" );
 
-        $( "#btn-login" ).html( 'Accediendo <i class="fa fa-refresh fa-spin" aria-hidden="true"></i>' ).attr( "disabled", true );
+        $( "#btn-login" ).html( 'ACCEDIENDO <i class="fa fa-refresh fa-spin" aria-hidden="true"></i>' ).attr( "disabled", true );
 
         if( !user.val() ){
 

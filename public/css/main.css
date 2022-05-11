@@ -22,20 +22,10 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-main{
-    height: 75vh;
-}
-
 @media screen and (max-width: 575.98px) {
     body {
         font-size: 13px;
     }
-}
-
-.main-title {
-    font-size: 1em;
-    letter-spacing: 1.8px;
-    font-weight: 600;
 }
 
 /* Animations 
@@ -201,140 +191,6 @@ main{
     }
 }
 
-@media screen and (max-width: 575.98px) {
-    .header.active .header-top {
-        margin-top: -41px;
-    }
-
-    .header.active .submenu {
-        top: 50px;
-    }
-
-    .header .header-top {
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-    }
-
-    .header .social-media {
-        display: none;
-    }
-
-    .header .text-contact {
-        text-align: center;
-    }
-
-    .header .logo {
-        width: 100px;
-    }
-
-    .header .menu-mobile {
-        width: 24px;
-        top: 20px;
-    }
-}
-
-/* form-login
-======================================================================================================================= */
-.form-login {
-    background: white;
-    margin: 80px 0 0 0;
-    margin-top: 30em;
-    padding-bottom: 2em;
-}
-
-.form-login .contact-title {
-    text-align: center;
-    margin: 30px 0;
-    padding: 0 60px 0 0;
-}
-
-.form-login #contact-form {
-    padding: 0 0 0 60px;
-}
-
-.form-login .contact-form__content {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: (1fr)[2];
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0 2rem;
-}
-
-.form-login .form-group {
-    margin: 0 0 2rem 0;
-}
-
-.form-login .form-group:nth-child(n + 7) {
-    margin: 0 0 2.6rem 0;
-}
-
-.form-login .input-control {
-    border-radius: 0;
-    font-style: italic;
-    font-size: .9em;
-    border: none;
-    border-bottom: 2px solid rgba(23, 61, 83, 0.3);
-    padding: 0;
-    height: 30px;
-}
-
-.form-login .input-control:focus {
-    border-bottom: 2px solid #E1801F;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-
-.form-login .input-control.message {
-    resize: none;
-    margin: 0 0 2rem 0;
-    height: auto;
-    border: 2px solid rgba(23, 61, 83, 0.3);
-    padding: 2px 5px;
-}
-
-.form-login .input-control.message:focus {
-    border: 2px solid #E1801F;
-}
-
-.form-login .info-contact {
-    font-weight: 400;
-}
-
-.form-login .submit-control {
-    border: none;
-    background: white;
-    font-style: normal;
-    font-weight: 600;
-    color: #E1801F;
-    height: auto;
-    text-align: left;
-    padding: 6px 0;
-    border-radius: 0;
-    font-size: .9em;
-}
-
-.form-login .submit-control:focus {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-
-@media screen and (max-width: 767.98px) {
-    .form-login {
-        margin: 40px 0 0 0;
-    }
-
-    .form-login .contact-title {
-        text-align: center;
-        padding: 0;
-    }
-
-    .form-login #contact-form {
-        padding: 0;
-    }
-}
-
 /* Footer 
 ======================================================================================================================= */
 .footer {
@@ -381,29 +237,4 @@ main{
     .footer .footer-logo {
         display: none;
     }
-}
-
-/* Login section
-======================================================================================================================= */
-.login {
-    background-image: url("../img/bg-login.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-    margin: 114px 0 0 0;
-}
-
-.login .home-title {
-    padding: 50px 0 0 60px;
-    font-size: 1.4em;
-    font-weight: 500;
-    line-height: 1.2;
-    letter-spacing: 2px;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.login .banner-img {
-    width: 100%;
 }
