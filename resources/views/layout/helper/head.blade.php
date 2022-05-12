@@ -50,6 +50,12 @@
     <link href="{{ asset( 'css/main.css' ) }}" rel="preload" as="style">
     <link href="{{ asset( 'css/main.css' ) }}" rel="stylesheet">
 
+    @if( !empty( session( env( "APP_CLAVE" ) . '3m41l' ) ) )
+        
+        <link href="{{ asset( 'css/dashboard.css' ) }}" rel="preload" as="style">
+        <link href="{{ asset( 'css/dashboard.css' ) }}" rel="stylesheet">
+    @endif
+
     <script>
         var baseUrl = "{{ env( "APP_URL" ) }}";
     </script>
