@@ -14,7 +14,7 @@
     @if( Session( 'message-success' ) )
 
         <div class="row">
-            <div class="col-md-12 text-center">
+            <div class="col-md-6 offset-md-3 text-center">
                 
                 <div class="alert alert-success" role="alert">
                     <p>
@@ -53,6 +53,17 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 offset-md-5 text-center">
+            
+            <div class="row">
+                <div class="col-md-6 offset-md-3 text-center">
+                    <a href="{{ route( 'user-create' ) }}"><button class="btn btn-block reference" type="button">AGREGAR</button></a>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

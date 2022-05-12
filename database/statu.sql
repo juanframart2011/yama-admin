@@ -1,2 +1,2 @@
-INSERT INTO `yamma-admin`.`statu` (`name`) VALUES ('delete');
-INSERT INTO `yamma-admin`.`statu` (`name`) VALUES ('inactive');
+INSERT INTO `statu` (`name`) VALUES ('delete');
+INSERT INTO `statu` (`name`) VALUES ('inactive');

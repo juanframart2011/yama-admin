@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 
+use App\Models\Profile as ProfileModel;
 use App\Models\Rol as RolModel;
 use App\Models\User as UserModel;
 
@@ -17,6 +18,17 @@ use Validator;
 
 class User extends Controller
 {
+
+    public function create(){
+
+        $data["metaTitle"] = "Crear Usuario";
+        $data["page"] = "user";
+        $data["profiles"] = ProfileModel::Where( "statu_id", 1 )->get();
+        $data["rols"] = RolModel::Where( "statu_id", 1 )->get();
+
+        return view( "user.create", $data );
+    }
+
     public function delete( Request $request, $user ){
 
         UserModel::Where( "id", $user )->update([
@@ -24,6 +36,18 @@ class User extends Controller
             "last_modification" => date( "Y-m-d H:i:s" )
         ]);
         return Redirect( 'admin/user/list' )->with( 'message-success', 'Se elimino el usuario correctamente' );
+    }
+
+    public function edit( Request $request, $userId ){
+
+        $data["metaTitle"] = "Editar Usuario";
+        $data["page"] = "user";
+        $data["profiles"] = ProfileModel::Where( "statu_id", 1 )->get();
+        $data["rols"] = RolModel::Where( "statu_id", 1 )->get();
+
+        UserModel::Where( "id", $userId )->get();
+
+        return view( "user.edit", $data );
     }
 
     public function list(){
@@ -90,5 +114,227 @@ class User extends Controller
         $request->session()->flush();
 
         return redirect()->route( 'home' );
+    }
+
+    public function save( Request $request ){
+
+        $messages = [
+            'email.required' => 'El Correo electrónico es obligatorio',
+            'email.email' => 'El Correo debe ser un email',
+            'email.unique' => 'El Correo ya existe en el sistema',
+            'password.required' => 'La Contraseña es obligatoria',
+            're-password.required' => 'La Confirmación de contraseña es obligatoria',
+            'rol.required' => 'El perfil es obligatorio',
+            'profile.required' => 'El puesto es obligatorio',
+            'name.required' => 'El nombre es obligatorio',
+        ];
+        $validate = Validator::make( $request->all(), [
+            'email' => 'required|email|unique:user,email',
+            'password' => 'required|same:re-password|between:5,11',
+            're-password' => 'required|between:5,11',
+            'profile' => 'required',
+            'rol' => 'required',
+            'name' => 'required'
+        ], $messages );
+        
+        if( $validate->fails() ){
+
+            $errors = $validate->errors()->all();
+            return response()->json([
+                'message' => $errors,
+                'result' => 2
+            ]);
+        }
+        else{
+
+            $name = $request->get( "name" );
+            $email = $request->get( "email" );
+            $password = $request->get( "password" );
+            $rol_id = Crypt::decryptString( $request->get( "rol" ) );
+            $profile_id = Crypt::decryptString( $request->get( "profile" ) );
+
+            $password = md5( $password );
+
+            DB::beginTransaction();
+
+            try {
+                
+                $userNew = new UserModel;
+                $userNew->name = $name;
+                $userNew->email = $email;
+                $userNew->password = $password;
+                $userNew->rol_id = $rol_id;
+                $userNew->profile_id = $profile_id;
+                $userNew->creation_date = date( "Y-m-d H:i:s" );
+                $userNew->save();
+
+                if( $userNew->id > 0 ){
+
+                    DB::commit();
+                    return response()->json([
+                        'message' => 'Registro creado exitosamente',
+                        'result' => 1
+                    ]);
+                }
+                else{
+
+                    DB::rollback();
+                    return response()->json([
+                        'message' => 'No se pudo crear el registro',
+                        'result' => 2
+                    ]);
+                }
+            }
+            catch (\Exception $e) {
+                
+                DB::rollback();
+
+                Log::warning( "User/save:: " . $e->getMessage() );
+
+                $errors = $validate->errors()->all();
+                return response()->json([
+                    'message' => "Ocurrio un error inesperado, vuelva a intentarlo",
+                    'result' => 2
+                ]);
+            }
+        }
+    }
+
+    public function update( Request $request, $userId ){
+
+        $messages = [
+            'email.required' => 'El Correo electrónico es obligatorio',
+            'email.email' => 'El Correo debe ser un email',
+            'rol.required' => 'El rol es obligatorio',
+            'name.required' => 'El nombre es obligatorio',
+        ];
+        $validate = Validator::make( $request->all(), [
+            'email' => 'required|email',
+            'rol' => 'required',
+            'name' => 'required'
+        ], $messages );
+        
+        if( $validate->fails() ){
+
+            $errors = $validate->errors()->all();
+            return response()->json([
+                'message' => $errors,
+                'result' => 2
+            ]);
+        }
+        else{
+
+            $userResult = UserModel::Where( "id", Crypt::decryptString( $userId ) )->get();
+
+            if( count( $userResult ) > 0 ){
+
+                $name = $request->get( "name" );
+                $email = $request->get( "email" );
+                $last_name = $request->get( "last_name" );
+                $rol_id = Crypt::decryptString( $request->get( "rol" ) );
+
+                DB::beginTransaction();
+
+                try {
+
+                    UserModel::Where( "id", Crypt::decryptString( $userId ) )->update([
+                        "name" => $name,
+                        "email" => $email,
+                        "rol_id" => $rol_id,
+                        "last_modification" => date( "Y-m-d H:i:s" )
+                    ]);
+
+                    DB::commit();
+                    return response()->json([
+                        'message' => 'Registro modificado exitosamente',
+                        'result' => 1
+                    ]);
+                }
+                catch (\Exception $e) {
+                    
+                    DB::rollback();
+
+                    Log::warning( "User/update:: " . $e->getMessage() );
+
+                    $errors = $validate->errors()->all();
+                    return response()->json([
+                        'message' => "Ocurrio un error inesperado, vuelva a intentarlo",
+                        'result' => 2
+                    ]);
+                }
+            }
+            else{
+
+                return response()->json([
+                    'message' => 'No existe el usuario',
+                    'result' => 2
+                ]);
+            }
+        }
+    }
+
+    public function updatePassword( Request $request, $userId ){
+
+        $messages = [
+            'password.required' => 'La Contraseña es obligatoria',
+            're-password.required' => 'La Confirmación de contraseña es obligatoria',
+        ];
+        $validate = Validator::make( $request->all(), [
+            'password' => 'required|same:re-password|between:5,11',
+            're-password' => 'required|between:5,11'
+        ], $messages );
+        
+        if( $validate->fails() ){
+
+            $errors = $validate->errors()->all();
+            return response()->json([
+                'message' => $errors,
+                'result' => 2
+            ]);
+        }
+        else{
+
+            $userResult = UserModel::Where( "id", Crypt::decryptString( $userId ) )->get();
+
+            if( count( $userResult ) > 0 ){
+
+                $password = md5( $request->get( "password" ) );
+
+                DB::beginTransaction();
+
+                try {
+
+                    UserModel::Where( "id", Crypt::decryptString( $userId ) )->update([
+                        "password" => $password,
+                        "last_modification" => date( "Y-m-d H:i:s" )
+                    ]);
+
+                    DB::commit();
+                    return response()->json([
+                        'message' => 'Contraseña modificada exitosamente',
+                        'result' => 1
+                    ]);
+                }
+                catch (\Exception $e) {
+                    
+                    DB::rollback();
+
+                    Log::warning( "User/updatePassword:: " . $e->getMessage() );
+
+                    $errors = $validate->errors()->all();
+                    return response()->json([
+                        'message' => "Ocurrio un error inesperado, vuelva a intentarlo",
+                        'result' => 2
+                    ]);
+                }
+            }
+            else{
+
+                return response()->json([
+                    'message' => 'No existe el usuario',
+                    'result' => 2
+                ]);
+            }
+        }
     }
 }

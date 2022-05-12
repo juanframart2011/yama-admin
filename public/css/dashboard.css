@@ -168,3 +168,8 @@ main{
 .content-data{
     margin: 80px 0 0 0;
 }
+
+button.reference{
+    background: #FFB833;
+    color: white;
+}
