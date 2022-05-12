@@ -16,6 +16,25 @@ use Validator;
 
 class User extends Controller
 {
+    public function delete( Request $request ){
+
+        $userId = $request->get( "user" );
+
+        if( !empty( $userId ) ){
+
+
+        }
+    }
+
+    public function list(){
+
+        $data["metaTitle"] = "Lista de Usuarios";
+        $data["page"] = "user";
+        $data["users"] = UserModel::Where( "statu_id", 1 )->get();
+
+        return view( "user.list", $data );
+    }
+
     public function login( Request $request ){
 
         $messages = [

@@ -29,6 +29,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'validAdmin'], function(){
     /*require __DIR__ . '/admin/pre-raffle.php';
     require __DIR__ . '/admin/raffle.php';
     require __DIR__ . '/admin/report.php';
-    require __DIR__ . '/admin/ticket.php';
-    require __DIR__ . '/admin/user.php';*/
+    require __DIR__ . '/admin/ticket.php';*/
+    require __DIR__ . '/user.php';
 });

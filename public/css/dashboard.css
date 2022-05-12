@@ -164,3 +164,7 @@ main{
 .sub-menu-residence {
     border-left: 5px solid #dedede;
 }
+
+.content-data{
+    margin: 80px 0 0 0;
+}

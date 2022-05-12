@@ -10,7 +10,7 @@
     </div>
     <ul class="list-sidebar bg-defoult">
         <li>
-            <a href=""><span class="nav-label">Usuarios</span></a>
+            <a class="{{ ( $page == 'user' )?'active' : '' }}" href="{{ route( 'user-list' ) }}"><span class="nav-label">Usuarios</span></a>
         </li>
         <li>
             <a href="#" data-toggle="collapse" data-target="#availability" class="collapsed"><span class="nav-label">Disponibilidad</span><span class="fa fa-chevron-left pull-right"></span></a>
