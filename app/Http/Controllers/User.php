@@ -49,7 +49,7 @@ class User extends Controller
                     env( "APP_CLAVE" ) . '3m41l' => $userResult[0]->email,
                     env( "APP_CLAVE" ) . '1d' => Crypt::encryptString( $userResult[0]->id ),
                     env( "APP_CLAVE" ) . 'n4m3' => $userResult[0]->name,
-                    env( "APP_CLAVE" ) . 'l437-n4m3' => $userResult[0]->name,
+                    env( "APP_CLAVE" ) . 'l437-n4m3' => $userResult[0]->last_name,
                     env( "APP_CLAVE" ) . 'r01' => Crypt::encryptString( $userResult[0]->rol_id ),
                     env( "APP_CLAVE" ) . 'pr0f1l3' => $userResult[0]->profile->name
                 ]);

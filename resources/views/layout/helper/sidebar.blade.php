@@ -1,146 +1,37 @@
-<nav id="sidebar" class="sidebar-wrapper">
-    <div class="sidebar-content">
-        <div class="sidebar-brand">
-            <a href="#">pro sidebar</a>
-            <div id="close-sidebar">
-                <i class="fas fa-times"></i>
+<aside>
+    <div class="sidebar left">
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="http://via.placeholder.com/160x160" class="rounded-circle" alt="{{ session( env( "APP_CLAVE" ) . 'n4m3' ) . ' ' . session( env( "APP_CLAVE" ) . 'l437-n4m3' ) }}">
+            </div>
+            <div class="pull-left info">
+                <p>{{ session( env( "APP_CLAVE" ) . 'n4m3' ) . ' ' . session( env( "APP_CLAVE" ) . 'l437-n4m3' ) }}</p>
+                <a href="#">{{ session( env( "APP_CLAVE" ) . 'pr0f1l3' ) }}</a>
             </div>
         </div>
-        <div class="sidebar-menu">
-            <ul>
-                <li class="header-menu">
-                    <span>General</span>
-                </li>
-                <li class="sidebar-dropdown">
-                    <a href="#">
-                    <i class="fa fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                    <span class="badge badge-pill badge-warning">New</span>
-                    </a>
-                    <div class="sidebar-submenu">
-                        <ul>
-                            <li>
-                                <a href="#">Dashboard 1
-                                <span class="badge badge-pill badge-success">Pro</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">Dashboard 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Dashboard 3</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="sidebar-dropdown">
-                    <a href="#">
-                    <i class="fa fa-shopping-cart"></i>
-                    <span>E-commerce</span>
-                    <span class="badge badge-pill badge-danger">3</span>
-                    </a>
-                    <div class="sidebar-submenu">
-                        <ul>
-                            <li>
-                                <a href="#">Products
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">Orders</a>
-                            </li>
-                            <li>
-                                <a href="#">Credit cart</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="sidebar-dropdown">
-                    <a href="#">
-                    <i class="far fa-gem"></i>
-                    <span>Components</span>
-                    </a>
-                    <div class="sidebar-submenu">
-                        <ul>
-                            <li>
-                                <a href="#">General</a>
-                            </li>
-                            <li>
-                                <a href="#">Panels</a>
-                            </li>
-                            <li>
-                                <a href="#">Tables</a>
-                            </li>
-                            <li>
-                                <a href="#">Icons</a>
-                            </li>
-                            <li>
-                                <a href="#">Forms</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="sidebar-dropdown">
-                    <a href="#">
-                    <i class="fa fa-chart-line"></i>
-                    <span>Charts</span>
-                    </a>
-                    <div class="sidebar-submenu">
-                        <ul>
-                            <li>
-                                <a href="#">Pie chart</a>
-                            </li>
-                            <li>
-                                <a href="#">Line chart</a>
-                            </li>
-                            <li>
-                                <a href="#">Bar chart</a>
-                            </li>
-                            <li>
-                                <a href="#">Histogram</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="sidebar-dropdown">
-                    <a href="#">
-                    <i class="fa fa-globe"></i>
-                    <span>Maps</span>
-                    </a>
-                    <div class="sidebar-submenu">
-                        <ul>
-                            <li>
-                                <a href="#">Google maps</a>
-                            </li>
-                            <li>
-                                <a href="#">Open street map</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="header-menu">
-                    <span>Extra</span>
-                </li>
-                <li>
-                    <a href="#">
-                    <i class="fa fa-book"></i>
-                    <span>Documentation</span>
-                    <span class="badge badge-pill badge-primary">Beta</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                    <i class="fa fa-calendar"></i>
-                    <span>Calendar</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                    <i class="fa fa-folder"></i>
-                    <span>Examples</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!-- sidebar-menu  -->
+        <ul class="list-sidebar bg-defoult">
+            {{--
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#dashboard" class="collapsed active" > <i class="fa fa-th-large"></i> <span class="nav-label"> Dashboards </span> <span class="fa fa-chevron-left pull-right"></span> </a>
+                <ul class="sub-menu collapse" id="dashboard">
+                    <li class="active"><a href="#">CSS3 Animation</a></li>
+                    <li><a href="#">General</a></li>
+                    <li><a href="#">Buttons</a></li>
+                    <li><a href="#">Tabs & Accordions</a></li>
+                    <li><a href="#">Typography</a></li>
+                    <li><a href="#">FontAwesome</a></li>
+                    <li><a href="#">Slider</a></li>
+                    <li><a href="#">Panels</a></li>
+                    <li><a href="#">Widgets</a></li>
+                    <li><a href="#">Bootstrap Model</a></li>
+                </ul>
+            </li>--}}
+            <li> <a href=""><i class="fa fa-pie-chart"></i> <span class="nav-label">Metrics</span> </a></li>
+            <li> <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Other Pages</span></a> </li>
+            <li> <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Other Pages</span></a> </li>
+            <li> <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Other Pages</span></a> </li>
+            <li> <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Other Pages</span></a> </li>
+            <li> <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Other Pages</span></a> </li>
+        </ul>
     </div>
-</nav>
+</aside>
