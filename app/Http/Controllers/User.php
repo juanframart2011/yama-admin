@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 use App\Models\Rol as RolModel;
 use App\Models\User as UserModel;
@@ -16,14 +17,13 @@ use Validator;
 
 class User extends Controller
 {
-    public function delete( Request $request ){
+    public function delete( Request $request, $user ){
 
-        $userId = $request->get( "user" );
-
-        if( !empty( $userId ) ){
-
-
-        }
+        UserModel::Where( "id", $user )->update([
+            "statu_id" => 2,
+            "last_modification" => date( "Y-m-d H:i:s" )
+        ]);
+        return Redirect( 'admin/user/list' )->with( 'message-success', 'Se elimino el usuario correctamente' );
     }
 
     public function list(){

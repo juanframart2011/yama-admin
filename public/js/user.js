@@ -8,19 +8,7 @@ $( document ).ready( function(){
         var result = confirm( "Deseas eliminar el usuario: " + $( this ).data( "name" ) );
         if( result == true ){
             
-            $.ajax({
-                url: baseUrl + '/user/delete',
-                type: 'POST',
-                dataType: 'json',
-                data: {param1: 'value1'},
-            })
-            .done(function() {
-                console.log("success");
-            })
-            .fail(function( error ){
-                
-                console.warn( "error => ", error );
-            });
+            window.location.href = baseUrl + '/admin/user/delete/' + userId;
         }
     });
 
