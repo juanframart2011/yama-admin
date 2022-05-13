@@ -14,12 +14,71 @@ use App\Models\Residence as ResidenceModel;
 use App\Models\ResidenceType as ResidenceTypeModel;
 use App\Models\ResidenceFloor as ResidenceFloorModel;
 
+use Validator;
+
 class Residence extends Controller
 {
+    public function detail( Request $request ){
+        
+        if( $request->ajax() ){
+
+            $message =  [
+                "id.required" =>  "El id es obligatorio"
+            ];
+
+            $validate = Validator::make($request->all(), [
+                'id'            => 'required',
+            ], $message );
+
+            if( $validate->fails() ){
+
+                $error = $validate->errors()->all();
+
+                return response()->json([
+                    "result" => 2,
+                    "message" => $error
+                ], 200 );
+            }
+            else{
+
+                $id = Crypt::decryptString( $request->get( "id" ) );
+                try{
+
+                    DB::beginTransaction();
+
+                    $result = ResidenceFloorModel::where( "id", $id )->get();                    
+
+                    DB::commit();
+
+                    return response()->json([
+                        "result" => 1,
+                        "message" => "Piso",
+                        "data" => $result[0]
+                    ], 200 );
+
+                }
+                catch( \Exception $e ){
+
+                    DB::rollback();
+
+                    Log::warning( "App/RaffleController/delete() :: " . $e->getMessage() );
+
+                    return response()->json([
+                        "result" => 2,
+                        "message" => "<strong>Ups!</strong> Error al eliminar el Sorteo"
+                    ], 200 );
+                }
+            }
+        }
+        else{
+
+            abort( 404 );
+        }
+    }
+
     public function update( Request $request ){
 
         $messages = [
-            'media.required' => 'La imagen es obligatoria',
             'floor_id.required' => 'El piso es obligatorio',
             'floor_id.exists' => 'El piso no existe',
             'disponible.required' => 'El disponible es obligatorio',
@@ -27,76 +86,98 @@ class Residence extends Controller
             'vendido.required' => 'El vendido es obligatorio',
         ];
         $validate = Validator::make( $request->all(), [
-            'media' => 'required',
             'floor_id' => 'required|exists:residence_floor,id',
             'disponible' => 'required',
             'apartado' => 'required',
             'vendido' => 'required'
         ], $messages );
-        
-        if( $validate->fails() ){
 
-            $errors = $validate->errors()->all();
-            return redirect()->route( 'raffle' )
-            ->withInput()
-            ->withErrors( $errors );
-        }
-        else{
+        $residenceFloorId = $request->get( "floor_id" );
 
-            $residenceFloorId = $request->get( "floor_id" );
+        $residenceFloorResult = ResidenceFloorModel::Where( "id", $residenceFloorId )->get();
+        $residenceTypeName = $residenceFloorResult[0]->residence->residenceType->name;
+        $residenceUrl = $residenceFloorResult[0]->residence->url;
 
-            $residenceFloorResult = ResidenceFloorModel::Where( "id", $residenceFloorId )->get();
+        if( count( $residenceFloorResult ) > 0 ){
 
-            $disponible = $request->get( "disponible" );
-            $apartado = $request->get( "apartado" );
-            $vendido = $request->get( "vendido" );
-
-            DB::beginTransaction();
-
-            try {
-
-                $media = $request->file( 'media' );
-                $media_ext = '.' . $request->file( 'media' )->getClientOriginalExtension();
-
-                if( env( 'APP_ENV' ) == 'local' ){
-
-                    $rutaCover = public_path( 'img/residence/' . $url . '/' );
-                }
-                else{
-
-                    $rutaCover = getcwd() . '/img/residence/' . $url . '/';
-                }
-
-                $mediaName = $url . $cover_ext;
-                $media->move( $rutaCover, $mediaName );
-                $urlMedia = 'img/residence/' . $url . '/' . $mediaName;
-
-                ResidenceFloorModel::Where( "id", $residenceFloorId )->update([
-                    "disponible" => $disponible,
-                    "apartado" => $apartado,
-                    "vendido" => $vendido,
-                    "media" => $urlMedia
-                    "last_modification" => date( "Y-m-d H:i:s" )
-                ]);
-
-                DB::commit();
-
-                return Redirect::to( 'admin/availability/residence-detail/' . Crypt::encryptString( $competitionNew->id ) );
-            }
-            catch (\Exception $e) {
-                
-                DB::rollback();
-
-                Log::warning( "App/Residence/save() :: " . $e->getMessage() );
-
-                $validate->errors()->add( 'Ocurrio un error', "Vuelve a intentarlo" );
-                $errors = $validate->errors()->all();
+            if( $validate->fails() ){
 
                 $errors = $validate->errors()->all();
-                return redirect()->route( 'raffle' )
+                return redirect()->route('residence-detail',[$residenceUrl] )
                 ->withInput()
                 ->withErrors( $errors );
             }
+            else{
+
+                $name = $request->get( "name" );
+                $disponible = $request->get( "disponible" );
+                $apartado = $request->get( "apartado" );
+                $vendido = $request->get( "vendido" );
+
+                DB::beginTransaction();
+
+                try {
+
+                    $media = $request->file( 'media' );
+                    
+                    if( !empty( $media ) ){
+
+                        $media_ext = '.' . $request->file( 'media' )->getClientOriginalExtension();
+
+                        $url = Str::slug( $residenceUrl . '-floor-' . $name );
+
+                        if( env( 'APP_ENV' ) == 'local' ){
+
+                            $rutaCover = public_path( 'img/residence/' . $residenceTypeName . '/' . $residenceUrl . '/' );
+                        }
+                        else{
+
+                            $rutaCover = getcwd() . '/img/residence/' . $residenceTypeName . '/' . $residenceUrl . '/';
+                        }
+
+                        $mediaName = $url . $media_ext;
+                        $media->move( $rutaCover, $mediaName );
+                        $urlMedia = '/img/residence/' . $residenceTypeName . '/' . $residenceUrl . '/' . $mediaName;
+                    }
+                    else{
+
+                        $residenceFloorModel = ResidenceFloorModel::Where( "id", $residenceFloorId )->get();
+
+                        $urlMedia = $residenceFloorModel[0]->media;
+                    }
+
+                    ResidenceFloorModel::Where( "id", $residenceFloorId )->update([
+                        "disponible" => $disponible,
+                        "apartado" => $apartado,
+                        "vendido" => $vendido,
+                        "media" => $urlMedia,
+                        "name" => $name,
+                        "last_modification" => date( "Y-m-d H:i:s" )
+                    ]);
+
+                    DB::commit();
+
+                    return Redirect::to('admin/availability/residence-detail/' . $residenceUrl )->with( 'message-success', '¡Se actualizo el piso '.$name.' !' );
+                }
+                catch (\Exception $e) {
+                    
+                    DB::rollback();
+
+                    Log::warning( "App/Residence/save() :: " . $e->getMessage() );
+
+                    $validate->errors()->add( 'Ocurrio un error', "Vuelve a intentarlo" );
+                    $errors = $validate->errors()->all();
+
+                    $errors = $validate->errors()->all();
+                    return redirect()->route('residence-detail',[$residenceUrl] )
+                    ->withInput()
+                    ->withErrors( $errors );
+                }
+            }
+        }
+        else{
+
+            abort( 404 );
         }
     }
 }

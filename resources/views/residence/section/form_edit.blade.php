@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-md-12 text-center title">
                         
-                        <form id="form-resindece" name="form-resindece" class="section" action="{{ route( 'residence-update' ) }}" method="POST">
+                        <form enctype="multipart/form-data" id="form-resindece" name="form-resindece" class="section" action="{{ route( 'residence-update' ) }}" method="POST">
                             <h5 class="">Datos del Piso</h5>
                             <div class="row">
                                 <div class="col-md-11 mx-auto">
@@ -21,8 +21,15 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="media">Imagen<span>*</span></label>
-                                                <input type="file" class="form-control mb-4" id="media" name="media">
+                                                <label for="name">Nombre<span>*</span></label>
+                                                <input type="text" class="form-control mb-4" id="name" name="name" placeholder="Nombre" value="{{ $residenceFloors[0]->name }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="media">Imagen</label>
+                                                <input type="file" accept="image/png,image/jpeg" class="form-control mb-4" id="media" name="media">
                                             </div>
                                         </div>
 

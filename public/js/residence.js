@@ -148,6 +148,47 @@ const Residence = function() {
         profile.classList.remove('error');
         rol.classList.remove('error');
     }
+
+    function search(){
+
+        let meta = document.getElementsByTagName( 'meta' );
+
+        $( "#floor" ).change( function(){
+
+            let id = $( this ).val();
+            $.ajax({
+                url: baseUrl + '/admin/availability/residence-detail',
+                type: 'POST',
+                dataType: 'json',
+                data: {id: id},
+                headers: {
+                    'X-CSRF-TOKEN': meta['csrf-token'].getAttribute( 'content' )
+                }
+            })
+            .done(function( result ){
+                
+                if( result.result == 1 ){
+
+                    var data = result.data;
+
+                    $( ".title-floor" ).html( data.name );
+                    $( "#name" ).val( data.name );
+                    $( "#disponible" ).val( data.disponible );
+                    $( "#apartado" ).val( data.apartado );
+                    $( "#vendido" ).val( data.vendido );
+                    $( "#floor_id" ).val( data.id );
+                    $( ".img-floor" ).attr( "src", data.media );
+                    $( ".floor-disponible" ).html( data.disponible );
+                    $( ".floor-apartado" ).html( data.apartado );
+                    $( ".floor-vendido" ).html( data.vendido );
+                }
+            })
+            .fail(function( error ){
+                console.warn( "error => ", error );
+            });
+            
+        });
+    }
     
     function update(){
 
@@ -160,17 +201,17 @@ const Residence = function() {
             let msgText = "";
             let error = false;
 
-            let media = $( "#media" );
+            let name = $( "#name" );
             let disponible = $( "#disponible" );
             let apartado = $( "#apartado" );
             let vendido = $( "#vendido" );
             
             $( "#alerta-texto-crear" ).html( '' );
 
-            if( media.val() == '' ){
+            if( name.val() == '' ){
                 
-                media.addClass('error');
-                msgText += "La imagen es obligatorio";
+                name.addClass('error');
+                msgText += "El nombre es obligatorio";
                 error = true;
             }
             if( disponible.val() == '' ){
@@ -211,6 +252,7 @@ const Residence = function() {
         detail: function() {
 
             modal();
+            search();
             update();
         },
         init: function() {
