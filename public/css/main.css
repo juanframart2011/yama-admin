@@ -197,8 +197,9 @@ body {
     background-image: -webkit-gradient(linear, left top, right top, from(#173D53), to(#778080));
     background-image: linear-gradient(to right, #173D53, #778080);
     padding: 1rem 0;
-    position: relative;
+    position: absolute;
     color: #FFFFFF;
+    width: 100%;
 }
 
 .footer .social-media {

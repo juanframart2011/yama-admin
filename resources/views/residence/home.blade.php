@@ -1,6 +1,11 @@
 @extends( "layout.main" )
 
 @section( "cssExtra" )
+    <style>
+        .residence-detail{
+    cursor: pointer;
+}
+    </style>
 @endsection
 
 @section( "content" )
@@ -24,11 +29,10 @@
             <div class="row">
                 
                 @foreach( $residences as $residence )
-                    <a href="{{ route( 'residence-detail', $residence->url ) }}">
-                    <div class="col-md-4 text-center">
+                    <div class="col-md-4 text-center residence-detail" data-url="{{ $residence->url }}">
                         <img class="img-fluid rounded-circle" src="{{ asset( $residence->cover ) }}" alt="{{ $residence->name }}">
                         <h6>{{ $residence->name }}</h6>
-                    </div></a>
+                    </div>
                 @endforeach
             </div>
         </div>
@@ -37,5 +41,13 @@
 
 @section( "scriptExtra" )
 
-    <script src="{{ asset( 'js/user.js' ) }}"></script>
+    <script>
+        $( document ).ready( function(){
+            $( ".residence-detail" ).click( function(){
+
+                let url = $( this ).data( "url" );
+                window.location.href = baseUrl + '/admin/availability/residence-detail/' + url;
+            });
+        });
+    </script>
 @endsection

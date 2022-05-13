@@ -50,6 +50,17 @@
         </div>
         <div class="col-md-6">
             <img class="img-fluid" src="{{ asset( $residence->cover_floor ) }}" alt="{{ $residence->name }}">
+            <br><br>
+            <div class="row">
+                <div class="col-md-6 offset-md-3 text-center">
+                    
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3 text-center">
+                            <a href="{{ route( 'user-create' ) }}"><button class="btn btn-block reference" type="button">EDITAR</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

@@ -7,6 +7,7 @@
             background-image: url("../img/bg-home.png");
             background-repeat: no-repeat;
             background-size: cover;
+            height: 76.4vh;
         }
         .title{
             color: white;
