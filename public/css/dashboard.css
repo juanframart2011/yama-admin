@@ -134,7 +134,12 @@ main{
     left: 55px;
 }
 
-
+.sub-menu-residence{
+    display: none;
+}
+.sub-menu-residence.active{
+    display: block;
+}
 .sidebar ul li .sub-menu-residence li a {
     position: relative
 }
@@ -166,7 +171,8 @@ main{
 }
 
 .content-data{
-    margin: 80px 0 0 0;
+    height: 76.6vh;
+    padding: 60px 20px 20px 20px;
 }
 
 button.reference{

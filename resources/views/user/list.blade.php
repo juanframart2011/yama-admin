@@ -46,7 +46,7 @@
                             <td>{{ $user->rol->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
-                                <a class="" href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <a href="{{ route( 'user-edit', Crypt::encryptString( $user->id ) ) }}" href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                 <a class="text-danger btn-delete" data-name="{{ $user->name }}" data-user="{{ $user->id }}" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                             </td>
                         </tr>

@@ -24,10 +24,10 @@ const User = function() {
         password = document.querySelector( '#password' ),
         rePassword = document.querySelector( '#re-password' ),
         rol = document.querySelector( '#rol' ),
+        profile = document.querySelector( '#profile' ),
         alerta = document.querySelector( '.alerta-mensaje-crear' ),
         alerta_texto = document.querySelector( '#alerta-texto-crear' ),
         formUser = document.querySelector( '#form-user' ),
-        formUpdatePassword = document.querySelector( '#form-update-password' ),
         btnAddUser = document.querySelector( '.btn-add-user' ),
         btnUpdateUser = document.querySelector( '.btn-update-user' ),
         btnUpdatePassword = document.querySelector( '.btn-update-password' );
@@ -41,8 +41,9 @@ const User = function() {
             event.preventDefault();
             
             _clearInputs();
-            btnAddUser.innerHTML = "Creando Usuario";
-            btnAddUser.disabled = true;
+            
+            $( ".btn-add-user" ).html( 'AGREGANDO <i class="fa fa-refresh fa-spin" aria-hidden="true"></i>' ).attr( "disabled", true );
+
             let msgText = "";
             let error = false;
             const url = document.querySelector( "#form-user" ).action;
@@ -122,38 +123,37 @@ const User = function() {
                             
                             formUser.reset();
 
-                            alerta.classList.remove('alert-light-danger');
-                            alerta.classList.add('alert-light-success');
+                            alerta.classList.remove('alert-danger');
+                            alerta.classList.add('alert-success');
                             alerta_texto.innerHTML= datos.message;
                             alerta.style.display = "block";
-                            window.location.reload();
+                            window.location.href = baseUrl + '/admin/user/list';
                         }
                         else{
 
-                            alerta.classList.remove('alert-light-success');
-                            alerta.classList.add('alert-light-danger');
+                            alerta.classList.remove('alert-success');
+                            alerta.classList.add('alert-danger');
                             alerta_texto.innerHTML= datos.message;
 
-                            alerta.style.display = "block";   
+                            alerta.style.display = "block";
+
+                            $( ".btn-add-user" ).html( 'AGREGAR' ).attr( "disabled", false );
                         }
                     },
                     error: function( error ){
 
                         console.warn( error );
-                        btnAddUser.innerHTML = "Agregar";
-                        btnAddUser.disabled = false;
+                        
+                        $( ".btn-add-user" ).html( 'AGREGAR' ).attr( "disabled", false );
                     }
                 });
-
-                btnAddUser.innerHTML = "Agregar";
-                btnAddUser.disabled = false;
             }
             else{
 
-                btnAddUser.innerHTML = "Agregar";
-                btnAddUser.disabled = false;
-                alerta.classList.remove('alert-light-success');
-                alerta.classList.add('alert-light-danger');
+                $( ".btn-add-user" ).html( 'AGREGAR' ).attr( "disabled", false );
+
+                alerta.classList.remove('alert-success');
+                alerta.classList.add('alert-danger');
                 alerta_texto.innerHTML = msgText;
                 alerta.style.display = "block";
             }
@@ -163,9 +163,11 @@ const User = function() {
     function _clearInputs(){
 
         name.classList.remove('error');
+        last_name.remove('error');
         email.classList.remove('error');
         password.classList.remove('error');
         rePassword.classList.remove('error');
+        profile.classList.remove('error');
         rol.classList.remove('error');
     }
 
@@ -218,25 +220,39 @@ const User = function() {
     
     function update(){
 
-        formUser.addEventListener('submit', ( event ) =>{
-            
+        $( "#form-user" ).submit( function( event ){
+
             event.preventDefault();
             
-            btnUpdateUser.innerHTML = "Modificando Datos";
-            btnUpdateUser.disabled = true;
+            $( ".btn-update-user" ).html( 'MODIFICANDO <i class="fa fa-refresh fa-spin" aria-hidden="true"></i>' ).attr( "disabled", true );
+
             let msgText = "";
             let error = false;
             const url = document.querySelector( "#form-user" ).action;
             
+            alerta_texto.innerHTML='';
+
             if( name.value == '' ){
                 
                 name.classList.add('error');
                 msgText += "<br> El nombre es obligatorio";
                 error = true;
             }
+            if( last_name.value == '' ){
+                
+                last_name.classList.add('error');
+                msgText += "<br> El apellido es obligatorio";
+                error = true;
+            }
+            if( profile.value == '' ){
+                
+                msgText += "<br> El puesto es obligatorio";
+                profile.classList.add('error');
+                error = true;
+            }
             if( rol.value == '' ){
                 
-                msgText += "<br> El rol es obligatorio";
+                msgText += "<br> El perfil es obligatorio";
                 rol.classList.add('error');
                 error = true;
             }
@@ -269,27 +285,39 @@ const User = function() {
 
                         if( datos.result == 1 ){
                             
-                            _messageDeleteSuccess( 'Usuario Modificado', 'success' );
+                            alerta.classList.remove('alert-danger');
+                            alerta.classList.add('alert-success');
+                            alerta_texto.innerHTML= datos.message;
+                            alerta.style.display = "block";
+                            window.location.reload();
                         }
                         else{
 
-                            _messageDeleteSuccess( datos.message, 'warning' );
+                            alerta.classList.remove('alert-success');
+                            alerta.classList.add('alert-danger');
+                            alerta_texto.innerHTML= datos.message;
+
+                            alerta.style.display = "block";
+
+                            $( ".btn-update-user" ).html( 'ACTUALIZAR' ).attr( "disabled", false );
                         }
                     },
                     error: function( error ){
 
-                        console.warn( error );   
+                        console.warn( error );
+                        
+                        $( ".btn-add-user" ).html( 'ACTUALIZAR' ).attr( "disabled", false );
                     }
                 });
-
-                btnUpdateUser.innerHTML = "Modificar Datos";
-                btnUpdateUser.disabled = false;
             }
             else{
 
-                _messageDeleteSuccess( msgText, 'warning' );
-                btnUpdatePassword.innerHTML = "Modificar Contraseña";
-                btnUpdatePassword.disabled = false;
+                $( ".btn-update-user" ).html( 'AGREGAR' ).attr( "disabled", false );
+
+                alerta.classList.remove('alert-success');
+                alerta.classList.add('alert-danger');
+                alerta_texto.innerHTML = msgText;
+                alerta.style.display = "block";
             }
         });
     }
@@ -298,12 +326,12 @@ const User = function() {
 
         _validatePasswords();
 
-        formUpdatePassword.addEventListener('submit', ( event ) =>{
-            
+        $( "#form-password" ).submit( function( event ){
+
             event.preventDefault();
             
-            btnUpdatePassword.innerHTML = "Modificando Contraseña";
-            btnUpdatePassword.disabled = true;
+            $( ".btn-update-password" ).html( 'Modificando Contraseña <i class="fa fa-refresh fa-spin" aria-hidden="true"></i>' ).attr( "disabled", true );
+
             let msgText = "";
             let error = false;
             const url = document.querySelector( "#form-update-password" ).action;
@@ -330,7 +358,7 @@ const User = function() {
             if( !error ){
 
                 let meta = document.getElementsByTagName('meta'), 
-                    datos = $( '#form-update-password' ).serialize();   
+                    datos = $( '#form-password' ).serialize();   
                 
                 $.ajax({
                     type: "POST",
@@ -351,22 +379,19 @@ const User = function() {
                             _messageDeleteSuccess( datos.message, 'warning' );
                         }
 
-                        btnUpdatePassword.innerHTML = "Modificar Contraseña";
-                        btnUpdatePassword.disabled = false;
+                        $( ".btn-update-password" ).html( 'Modificar Contraseña <i class="fa fa-refresh fa-spin" aria-hidden="true"></i>' ).attr( "disabled", false );
                     },
                     error: function( error ){
 
                         console.warn( error );
-                        btnUpdatePassword.innerHTML = "Modificar Contraseña";
-                        btnUpdatePassword.disabled = false;
+                        $( ".btn-update-password" ).html( 'Modificar Contraseña <i class="fa fa-refresh fa-spin" aria-hidden="true"></i>' ).attr( "disabled", disabled );
                     }
                 });
             }
             else{
 
                 _messageDeleteSuccess( msgText, 'warning' );
-                btnUpdatePassword.innerHTML = "Modificar Contraseña";
-                btnUpdatePassword.disabled = false;
+                $( ".btn-update-password" ).html( 'Modificar Contraseña <i class="fa fa-refresh fa-spin" aria-hidden="true"></i>' ).attr( "disabled", false );
             }
         });
     }    

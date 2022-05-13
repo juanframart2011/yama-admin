@@ -40,14 +40,28 @@ class User extends Controller
 
     public function edit( Request $request, $userId ){
 
-        $data["metaTitle"] = "Editar Usuario";
-        $data["page"] = "user";
-        $data["profiles"] = ProfileModel::Where( "statu_id", 1 )->get();
-        $data["rols"] = RolModel::Where( "statu_id", 1 )->get();
+        $userId = Crypt::decryptString( $userId );
 
-        UserModel::Where( "id", $userId )->get();
+        $userResult = UserModel::Where([
+            "id" => $userId,
+            "statu_id" => 1
+        ])->get();
 
-        return view( "user.edit", $data );
+        if( count( $userResult ) > 0 ){
+
+            $data["metaTitle"] = "Editar Usuario";
+            $data["page"] = "user";
+            $data["profiles"] = ProfileModel::Where( "statu_id", 1 )->get();
+            $data["rols"] = RolModel::Where( "statu_id", 1 )->get();
+
+            $data["user"] = $userResult[0];
+
+            return view( "user.edit", $data );
+        }
+        else{
+
+            abort( 404 );
+        }
     }
 
     public function list(){
@@ -127,6 +141,7 @@ class User extends Controller
             'rol.required' => 'El perfil es obligatorio',
             'profile.required' => 'El puesto es obligatorio',
             'name.required' => 'El nombre es obligatorio',
+            'last_name.required' => 'El apellido es obligatorio',
         ];
         $validate = Validator::make( $request->all(), [
             'email' => 'required|email|unique:user,email',
@@ -134,7 +149,8 @@ class User extends Controller
             're-password' => 'required|between:5,11',
             'profile' => 'required',
             'rol' => 'required',
-            'name' => 'required'
+            'name' => 'required',
+            'last_name' => 'required'
         ], $messages );
         
         if( $validate->fails() ){
@@ -148,6 +164,7 @@ class User extends Controller
         else{
 
             $name = $request->get( "name" );
+            $last_name = $request->get( "last_name" );
             $email = $request->get( "email" );
             $password = $request->get( "password" );
             $rol_id = Crypt::decryptString( $request->get( "rol" ) );
@@ -161,6 +178,7 @@ class User extends Controller
                 
                 $userNew = new UserModel;
                 $userNew->name = $name;
+                $userNew->last_name = $last_name;
                 $userNew->email = $email;
                 $userNew->password = $password;
                 $userNew->rol_id = $rol_id;
@@ -205,13 +223,17 @@ class User extends Controller
         $messages = [
             'email.required' => 'El Correo electrónico es obligatorio',
             'email.email' => 'El Correo debe ser un email',
-            'rol.required' => 'El rol es obligatorio',
+            'rol.required' => 'El perfil es obligatorio',
+            'profile.required' => 'El puesto es obligatorio',
             'name.required' => 'El nombre es obligatorio',
+            'last_name.required' => 'El apellido es obligatorio',
         ];
         $validate = Validator::make( $request->all(), [
-            'email' => 'required|email',
+            'email' => 'required|email|email',
+            'profile' => 'required',
             'rol' => 'required',
-            'name' => 'required'
+            'name' => 'required',
+            'last_name' => 'required'
         ], $messages );
         
         if( $validate->fails() ){
@@ -232,6 +254,7 @@ class User extends Controller
                 $email = $request->get( "email" );
                 $last_name = $request->get( "last_name" );
                 $rol_id = Crypt::decryptString( $request->get( "rol" ) );
+                $profile_id = Crypt::decryptString( $request->get( "profile" ) );
 
                 DB::beginTransaction();
 
@@ -239,8 +262,10 @@ class User extends Controller
 
                     UserModel::Where( "id", Crypt::decryptString( $userId ) )->update([
                         "name" => $name,
+                        "last_name" => $last_name,
                         "email" => $email,
                         "rol_id" => $rol_id,
+                        "profile_id" => $profile_id,
                         "last_modification" => date( "Y-m-d H:i:s" )
                     ]);
 

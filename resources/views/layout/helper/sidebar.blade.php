@@ -22,7 +22,7 @@
 
                 @foreach( $residenceTypes as $residenceType )
                     <li>
-                        <a href="#" data-toggle="collapse" data-target="#residence-type-{{ $residenceType->name }}" class="collapsed"><span class="nav-label">{{ $residenceType->name }}</span></a>
+                        <a class="{{ ( $page == $residenceType->url )?'active' : '' }}" href="{{ route( 'availability-detail', $residenceType->url ) }}" data-toggle="collapse" data-target="#residence-type-{{ $residenceType->name }}" class="collapsed"><span class="nav-label">{{ $residenceType->name }}</span></a>
 
                         <ul class="sub-menu-residence" id="residence-type-{{ $residenceType->name }}">
                             
