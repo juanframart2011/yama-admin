@@ -13,12 +13,42 @@
 
 @section( "content" )
 
+    @include( "residence.section.form_edit" )
+
     <div class="row">
         <div class="col-md-6 offset-md-3 text-center title">
             <h3>DISPONIBILIDAD</h3>
             <h3>{{ $residence->name }}</h3>
         </div>
     </div>
+
+    @if( Session( 'message-success' ) )
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3 text-center">
+                
+                <div class="alert alert-success" role="alert">
+                    <p>
+                        {{ Session( 'message-success' ) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    @if( !$errors->isEmpty() )
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3 text-center">
+                
+                <div class="alert alert-danger" role="alert">
+                    @foreach ( $errors->all() as $error )
+                        <strong>{{$error}}</strong><br>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    @endif
 
 	<div class="row">
         <div class="col-md-12 text-left">
@@ -43,7 +73,7 @@
                 
                 <div class="col-md-4"><span style="background-color:#52BE80;" class="floor-statu"></span>{{ $residenceFloors[0]->disponible }} Disponible</div>
                 <div class="col-md-4"><span style="background-color:#F4D03F;" class="floor-statu"></span>{{ $residenceFloors[0]->apartado }} Apartado</div>
-                <div class="col-md-4"><span style="background-color:#E74C3C;" class="floor-statu"></span>{{ $residenceFloors[0]->vencido }} Vencido</div>
+                <div class="col-md-4"><span style="background-color:#E74C3C;" class="floor-statu"></span>{{ $residenceFloors[0]->vendido }} Vendido</div>
             </div>
 
             <img class="img-fluid" src="{{ asset( $residenceFloors[0]->media ) }}" alt="{{ $residenceFloors[0]->name }}">
@@ -56,7 +86,7 @@
                     
                     <div class="row">
                         <div class="col-md-6 offset-md-3 text-center">
-                            <a href="{{ route( 'user-create' ) }}"><button class="btn btn-block reference" type="button">EDITAR</button></a>
+                            <button class="btn btn-block btn-edit-residence reference" type="button" data-toggle="modal" data-target="#formEditResidence">EDITAR</button>
                         </div>
                     </div>
                 </div>
@@ -67,5 +97,19 @@
 
 @section( "scriptExtra" )
 
-    <script src="{{ asset( 'js/user.js' ) }}"></script>
+    <script src="{{ asset( 'js/residence.js' ) }}"></script>
+    <script>
+        $( document ).ready( function(){
+
+            Residence.detail();
+        });
+    </script>
+
+    <script>
+
+        $( document ).ready( function(){
+
+            
+        });
+    </script>
 @endsection

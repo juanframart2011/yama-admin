@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Str;
 
 use App\Models\Residence as ResidenceModel;
 use App\Models\ResidenceType as ResidenceTypeModel;

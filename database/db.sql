@@ -102,6 +102,9 @@ CREATE TABLE `residence_floor` (
   `description` text,
   `media` text,
   `number` varchar(45) DEFAULT NULL,
+  `disponible` int(11) DEFAULT '0',
+  `apartado` int(11) DEFAULT '0',
+  `vencido` int(11) DEFAULT '0',
   `creation_date` datetime DEFAULT NULL,
   `last_modification` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -121,7 +124,7 @@ CREATE TABLE `residence_floor` (
 
 LOCK TABLES `residence_floor` WRITE;
 /*!40000 ALTER TABLE `residence_floor` DISABLE KEYS */;
-INSERT INTO `residence_floor` VALUES (1,1,9,1,'vip',1,NULL,NULL,NULL,NULL,NULL),(2,1,9,1,'pent house',2,NULL,NULL,NULL,NULL,NULL),(3,1,9,1,'piso 3',3,NULL,NULL,NULL,NULL,NULL),(4,1,9,1,'piso 2',4,NULL,NULL,NULL,NULL,NULL),(5,1,9,1,'piso 1',5,NULL,NULL,NULL,NULL,NULL),(6,1,9,1,'GARDEN HOUSE',6,NULL,NULL,NULL,NULL,NULL),(7,1,9,1,'MUSEO DEL AUTOMOVIL',7,NULL,NULL,NULL,NULL,NULL),(8,1,9,1,'CENTRO COMERCIAL PA',8,NULL,NULL,NULL,NULL,NULL),(9,1,9,1,'CENTRO COMERCIAL PB',9,NULL,NULL,NULL,NULL,NULL),(10,1,9,1,'ESTACIONAMIENTO 1',10,NULL,NULL,NULL,NULL,NULL),(11,1,9,1,'ESTACIONAMIENTO 2',11,NULL,NULL,NULL,NULL,NULL),(12,1,9,1,'ESTACIONAMIENTO 3',12,NULL,NULL,NULL,NULL,NULL),(13,1,9,1,'ESTACIONAMIENTO 4',13,NULL,NULL,NULL,NULL,NULL),(14,1,9,1,'ESTACIONAMIENTO 5',14,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `residence_floor` VALUES (1,1,9,1,'vip',1,NULL,'img/residence/corporativo/punta-museo/vip.jpg',NULL,0,0,0,NULL,NULL),(2,1,9,1,'pent house',2,NULL,'img/residence/corporativo/punta-museo/tower.png',NULL,0,0,0,NULL,NULL),(3,1,9,1,'piso 3',3,NULL,'img/residence/corporativo/punta-museo/tower.png',NULL,0,0,0,NULL,NULL),(4,1,9,1,'piso 2',4,NULL,'img/residence/corporativo/punta-museo/tower.png',NULL,0,0,0,NULL,NULL),(5,1,9,1,'piso 1',5,NULL,'img/residence/corporativo/punta-museo/tower.png',NULL,0,0,0,NULL,NULL),(6,1,9,1,'GARDEN HOUSE',6,NULL,'img/residence/corporativo/punta-museo/tower.png',NULL,0,0,0,NULL,NULL),(7,1,9,1,'MUSEO DEL AUTOMOVIL',7,NULL,'img/residence/corporativo/punta-museo/tower.png',NULL,0,0,0,NULL,NULL),(8,1,9,1,'CENTRO COMERCIAL PA',8,NULL,'img/residence/corporativo/punta-museo/tower.png',NULL,0,0,0,NULL,NULL),(9,1,9,1,'CENTRO COMERCIAL PB',9,NULL,'img/residence/corporativo/punta-museo/tower.png',NULL,0,0,0,NULL,NULL),(10,1,9,1,'ESTACIONAMIENTO 1',10,NULL,'img/residence/corporativo/punta-museo/tower.png',NULL,0,0,0,NULL,NULL),(11,1,9,1,'ESTACIONAMIENTO 2',11,NULL,'img/residence/corporativo/punta-museo/tower.png',NULL,0,0,0,NULL,NULL),(12,1,9,1,'ESTACIONAMIENTO 3',12,NULL,'img/residence/corporativo/punta-museo/tower.png',NULL,0,0,0,NULL,NULL),(13,1,9,1,'ESTACIONAMIENTO 4',13,NULL,'img/residence/corporativo/punta-museo/tower.png',NULL,0,0,0,NULL,NULL),(14,1,9,1,'ESTACIONAMIENTO 5',14,NULL,'img/residence/corporativo/punta-museo/tower.png',NULL,0,0,0,NULL,NULL);
 /*!40000 ALTER TABLE `residence_floor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,7 +157,7 @@ CREATE TABLE `residence_floor_statu` (
 
 LOCK TABLES `residence_floor_statu` WRITE;
 /*!40000 ALTER TABLE `residence_floor_statu` DISABLE KEYS */;
-INSERT INTO `residence_floor_statu` VALUES (1,1,'disponible venta','green',NULL,NULL,NULL),(2,1,'apartado venta','yellow',NULL,NULL,NULL),(3,1,'vendido','red',NULL,NULL,NULL);
+INSERT INTO `residence_floor_statu` VALUES (1,1,'disponible venta','#52BE80',NULL,NULL,NULL),(2,1,'apartado venta','#F4D03F',NULL,NULL,NULL),(3,1,'vendido','#E74C3C',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `residence_floor_statu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -335,4 +338,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-12 22:42:12
+-- Dump completed on 2022-05-12 23:34:04
