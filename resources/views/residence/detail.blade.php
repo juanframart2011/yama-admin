@@ -1,6 +1,14 @@
 @extends( "layout.main" )
 
 @section( "cssExtra" )
+    <style>
+        .floor-statu{
+            height: 12px;
+            width: 12px;
+            display: inline-block;
+            margin: 0 5px 0 0;
+        }
+    </style>
 @endsection
 
 @section( "content" )
@@ -28,7 +36,18 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6"></div>
+        <div class="col-md-6">
+            <h3>{{ $residenceFloors[0]->name }}</h3>
+            <hr>
+            <div class="row">
+                
+                <div class="col-md-4"><span style="background-color:#52BE80;" class="floor-statu"></span>{{ $residenceFloors[0]->disponible }} Disponible</div>
+                <div class="col-md-4"><span style="background-color:#F4D03F;" class="floor-statu"></span>{{ $residenceFloors[0]->apartado }} Apartado</div>
+                <div class="col-md-4"><span style="background-color:#E74C3C;" class="floor-statu"></span>{{ $residenceFloors[0]->vencido }} Vencido</div>
+            </div>
+
+            <img class="img-fluid" src="{{ asset( $residenceFloors[0]->media ) }}" alt="{{ $residenceFloors[0]->name }}">
+        </div>
         <div class="col-md-6">
             <img class="img-fluid" src="{{ asset( $residence->cover_floor ) }}" alt="{{ $residence->name }}">
         </div>
