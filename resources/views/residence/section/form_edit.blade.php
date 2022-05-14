@@ -38,21 +38,28 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="disponible">Disponible<span>*</span></label>
-                                                <input type="text" class="form-control mb-4" id="disponible" name="disponible" placeholder="Disponible" value="{{ $residenceFloors[0]->disponible }}">
+                                                <input type="number" class="form-control mb-4" id="disponible" name="disponible" placeholder="Disponible" value="{{ $residenceFloors[0]->disponible }}">
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="apartado">Apartado<span>*</span></label>
-                                                <input type="text" class="form-control mb-4" id="apartado" name="apartado" placeholder="Apartado" value="{{ $residenceFloors[0]->apartado }}">
+                                                <input type="number" class="form-control mb-4" id="apartado" name="apartado" placeholder="Apartado" value="{{ $residenceFloors[0]->apartado }}">
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="vendido">Vendido<span>*</span></label>
-                                                <input type="text" class="form-control mb-4" id="vendido" name="vendido" placeholder="Vendido" value="{{ $residenceFloors[0]->vendido }}">
+                                                <input type="number" class="form-control mb-4" id="vendido" name="vendido" placeholder="Vendido" value="{{ $residenceFloors[0]->vendido }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="orden">Orden<span>*</span></label>
+                                                <input type="number" class="form-control mb-4" id="orden" name="orden" placeholder="Orden" value="{{ $residenceFloors[0]->orden }}">
                                             </div>
                                         </div>
                                     </div>

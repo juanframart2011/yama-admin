@@ -177,6 +177,7 @@ const Residence = function() {
                     $( "#apartado" ).val( data.apartado );
                     $( "#vendido" ).val( data.vendido );
                     $( "#floor_id" ).val( data.id );
+                    $( "#orden" ).val( data.orden );
                     $( ".img-floor" ).attr( "src", data.media );
                     $( ".floor-disponible" ).html( data.disponible );
                     $( ".floor-apartado" ).html( data.apartado );
@@ -205,6 +206,7 @@ const Residence = function() {
             let disponible = $( "#disponible" );
             let apartado = $( "#apartado" );
             let vendido = $( "#vendido" );
+            let orden = $( "#orden" );
             
             $( "#alerta-texto-crear" ).html( '' );
 
@@ -230,6 +232,12 @@ const Residence = function() {
                 
                 msgText += "<br> El vendido es obligatorio";
                 vendido.addClass('error');
+                error = true;
+            }
+            if( orden.val() == '' ){
+                
+                msgText += "<br> El orden es obligatorio";
+                orden.addClass('error');
                 error = true;
             }
 

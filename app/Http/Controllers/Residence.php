@@ -113,6 +113,7 @@ class Residence extends Controller
                 $disponible = $request->get( "disponible" );
                 $apartado = $request->get( "apartado" );
                 $vendido = $request->get( "vendido" );
+                $orden = $request->get( "orden" );
 
                 DB::beginTransaction();
 
@@ -125,6 +126,11 @@ class Residence extends Controller
                         $media_ext = '.' . $request->file( 'media' )->getClientOriginalExtension();
 
                         $url = Str::slug( $residenceUrl . '-floor-' . $name );
+
+                        if( !file_exists( getcwd() . 'img/residence/' . $residenceTypeName . '/' . $residenceUrl ) ){
+
+                            mkdir( getcwd() . 'img/residence/' . $residenceTypeName . '/' . $residenceUrl, 0777, true );
+                        }
 
                         if( env( 'APP_ENV' ) == 'local' ){
 
@@ -152,6 +158,7 @@ class Residence extends Controller
                         "vendido" => $vendido,
                         "media" => $urlMedia,
                         "name" => $name,
+                        "orden" => $orden,
                         "last_modification" => date( "Y-m-d H:i:s" )
                     ]);
 
