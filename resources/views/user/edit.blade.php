@@ -73,13 +73,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="profile">Puesto<span>*</span></label>
-                                    <select class="form-control" id="profile" name="profile">
-                                        <option value="">Selecciona Puesto</option>
-                                        @foreach( $profiles as $profile )
-
-                                            <option {{ ( $user->profile_id == $profile->id )? 'selected' : '' }} value="{{ Crypt::encryptString( $profile->id ) }}">{{ $profile->name }}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" class="form-control" id="profile" name="profile" placeholder="Puesto" value="{{ $user->profile_id }}">
                                 </div>
                             </div>
                         </div>

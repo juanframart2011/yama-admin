@@ -23,7 +23,6 @@ class User extends Controller
 
         $data["metaTitle"] = "Crear Usuario";
         $data["page"] = "user";
-        $data["profiles"] = ProfileModel::Where( "statu_id", 1 )->get();
         $data["rols"] = RolModel::Where( "statu_id", 1 )->get();
 
         return view( "user.create", $data );
@@ -51,7 +50,6 @@ class User extends Controller
 
             $data["metaTitle"] = "Editar Usuario";
             $data["page"] = "user";
-            $data["profiles"] = ProfileModel::Where( "statu_id", 1 )->get();
             $data["rols"] = RolModel::Where( "statu_id", 1 )->get();
 
             $data["user"] = $userResult[0];
@@ -168,7 +166,7 @@ class User extends Controller
             $email = $request->get( "email" );
             $password = $request->get( "password" );
             $rol_id = Crypt::decryptString( $request->get( "rol" ) );
-            $profile_id = Crypt::decryptString( $request->get( "profile" ) );
+            $profile_id = $request->get( "profile" );
 
             $password = md5( $password );
 
@@ -254,7 +252,7 @@ class User extends Controller
                 $email = $request->get( "email" );
                 $last_name = $request->get( "last_name" );
                 $rol_id = Crypt::decryptString( $request->get( "rol" ) );
-                $profile_id = Crypt::decryptString( $request->get( "profile" ) );
+                $profile_id = $request->get( "profile" );
 
                 DB::beginTransaction();
 

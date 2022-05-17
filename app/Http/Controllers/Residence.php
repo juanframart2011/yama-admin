@@ -80,16 +80,10 @@ class Residence extends Controller
 
         $messages = [
             'floor_id.required' => 'El piso es obligatorio',
-            'floor_id.exists' => 'El piso no existe',
-            'disponible.required' => 'El disponible es obligatorio',
-            'apartado.required' => 'El apartado es obligatorio',
-            'vendido.required' => 'El vendido es obligatorio',
+            'floor_id.exists' => 'El piso no existe'
         ];
         $validate = Validator::make( $request->all(), [
-            'floor_id' => 'required|exists:residence_floor,id',
-            'disponible' => 'required',
-            'apartado' => 'required',
-            'vendido' => 'required'
+            'floor_id' => 'required|exists:residence_floor,id'
         ], $messages );
 
         $residenceFloorId = $request->get( "floor_id" );
@@ -110,10 +104,6 @@ class Residence extends Controller
             else{
 
                 $name = $request->get( "name" );
-                $disponible = $request->get( "disponible" );
-                $apartado = $request->get( "apartado" );
-                $vendido = $request->get( "vendido" );
-                $orden = $request->get( "orden" );
 
                 DB::beginTransaction();
 
@@ -153,12 +143,8 @@ class Residence extends Controller
                     }
 
                     ResidenceFloorModel::Where( "id", $residenceFloorId )->update([
-                        "disponible" => $disponible,
-                        "apartado" => $apartado,
-                        "vendido" => $vendido,
                         "media" => $urlMedia,
                         "name" => $name,
-                        "orden" => $orden,
                         "last_modification" => date( "Y-m-d H:i:s" )
                     ]);
 

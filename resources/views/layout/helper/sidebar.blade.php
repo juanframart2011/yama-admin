@@ -22,7 +22,7 @@
 
                 @foreach( $residenceTypes as $residenceType )
                     <li>
-                        <a class="{{ ( $page == $residenceType->url )?'active' : '' }}" href="{{ route( 'availability-detail', $residenceType->url ) }}" data-toggle="collapse" data-target="#residence-type-{{ $residenceType->name }}" class="collapsed"><span class="nav-label">{{ $residenceType->name }}</span></a>
+                        <a class="{{ ( $page == $residenceType->url )?'active' : '' }}" href="{{ route( 'availability-detail', $residenceType->url ) }}" data-toggle="collapse" data-target="#residence-type-{{ $residenceType->name }}" class="collapsed"><span class="nav-label" style="text-transform: capitalize;">{{ $residenceType->name }}</span></a>
 
                         <ul class="sub-menu-residence" id="residence-type-{{ $residenceType->name }}">
                             
@@ -35,16 +35,13 @@
 
                             @foreach( $residences as $residence )
                                 <li>
-                                    <a href=""><span class="nav-label">{{ $residence->name }}</span></a>
+                                    <a href=""><span class="nav-label" style="text-transform: capitalize;">{{ $residence->name }}</span></a>
                                 </li>
                             @endforeach
                         </ul>
                     </li>
                 @endforeach
             </ul>
-        </li>
-        <li>
-            <a href=""><span class="nav-label">Materiales para ventas</span></a>
         </li>
     </ul>
 </aside>

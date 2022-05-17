@@ -63,7 +63,7 @@ const User = function() {
                 error = true;
             }
             if( last_name.value == '' ){
-                
+
                 last_name.classList.add('error');
                 msgText += "<br> El apellido es obligatorio";
                 error = true;
@@ -161,9 +161,9 @@ const User = function() {
     }
 
     function _clearInputs(){
-
+        
         name.classList.remove('error');
-        last_name.remove('error');
+        last_name.classList.remove('error');
         email.classList.remove('error');
         password.classList.remove('error');
         rePassword.classList.remove('error');

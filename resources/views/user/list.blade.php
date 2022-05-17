@@ -42,7 +42,7 @@
                     @foreach( $users as $user )
                         <tr>
                             <td>{{ $user->name . ' ' . $user->last_name }}</td>
-                            <td>{{ $user->profile->name }}</td>
+                            <td>{{ $user->profile_id }}</td>
                             <td>{{ $user->rol->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
