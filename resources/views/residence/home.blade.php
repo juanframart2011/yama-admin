@@ -3,8 +3,11 @@
 @section( "cssExtra" )
     <style>
         .residence-detail{
-    cursor: pointer;
-}
+            cursor: pointer;
+        }
+        .residence-detail h6{
+            text-transform: capitalize;
+        }
     </style>
 @endsection
 
@@ -25,12 +28,12 @@
     </div>
 
     <div class="row">
-        <div class="col-md-8 offset-md-2">
+        <div class="col-md-6 offset-md-3">
             <div class="row">
                 
                 @foreach( $residences as $residence )
-                    <div class="col-md-4 text-center residence-detail" data-url="{{ $residence->url }}">
-                        <img class="img-fluid rounded-circle" src="{{ asset( $residence->cover ) }}" alt="{{ $residence->name }}">
+                    <div class="col-md-4 text-center residence-detail mt-4 mb-4" data-url="{{ $residence->url }}">
+                        <img class="img-fluid rounded-circle mb-2" src="{{ asset( $residence->cover ) }}" alt="{{ $residence->name }}">
                         <h6>{{ $residence->name }}</h6>
                     </div>
                 @endforeach
