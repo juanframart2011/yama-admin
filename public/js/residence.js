@@ -141,7 +141,7 @@ const Residence = function() {
     function _clearInputs(){
 
         name.classList.remove('error');
-        last_name.remove('error');
+        last_name.classList.remove('error');
         email.classList.remove('error');
         password.classList.remove('error');
         rePassword.classList.remove('error');

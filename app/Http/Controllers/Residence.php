@@ -109,35 +109,29 @@ class Residence extends Controller
 
                 try {
 
+                    $residenceFloorModel = ResidenceFloorModel::Where( "id", $residenceFloorId )->get();
                     $media = $request->file( 'media' );
                     
                     if( !empty( $media ) ){
 
-                        $media_ext = '.' . $request->file( 'media' )->getClientOriginalExtension();
+                        #$media_ext = '.' . $request->file( 'media' )->getClientOriginalExtension();
 
-                        $url = Str::slug( $residenceUrl . '-floor-' . $name );
-
-                        if( !file_exists( getcwd() . 'img/residence/' . $residenceTypeName . '/' . $residenceUrl ) ){
-
-                            mkdir( getcwd() . 'img/residence/' . $residenceTypeName . '/' . $residenceUrl, 0777, true );
-                        }
+                        $url = $residenceFloorModel[0]->media;
 
                         if( env( 'APP_ENV' ) == 'local' ){
 
-                            $rutaCover = public_path( 'img/residence/' . $residenceTypeName . '/' . $residenceUrl . '/' );
+                            $rutaCover = public_path( 'img/projects/' . $residenceFloorModel[0]->first . '/' );
                         }
                         else{
 
-                            $rutaCover = getcwd() . '/img/residence/' . $residenceTypeName . '/' . $residenceUrl . '/';
+                            $rutaCover = getcwd() . '/img/projects/' . $residenceFloorModel[0]->first . '/';
                         }
 
-                        $mediaName = $url . $media_ext;
+                        $mediaName = $url;
                         $media->move( $rutaCover, $mediaName );
-                        $urlMedia = '/img/residence/' . $residenceTypeName . '/' . $residenceUrl . '/' . $mediaName;
+                        $urlMedia = '/img/projects/' . $residenceFloorModel[0]->first . $mediaName;
                     }
                     else{
-
-                        $residenceFloorModel = ResidenceFloorModel::Where( "id", $residenceFloorId )->get();
 
                         $urlMedia = $residenceFloorModel[0]->media;
                     }
