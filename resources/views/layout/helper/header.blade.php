@@ -1,8 +1,6 @@
 <header class="header" data-aos="zoom-out-down" data-aos-duration="1000">
 
-	@include( "layout.helper.header-top" )
-    
-    <div class="header-main">
+	<div class="header-main">
         <a href="/"><img src="{{ asset( 'img/logo.svg' ) }}" alt="Logo Yama" class="logo"></a>
 
         @if( !empty( session( env( "APP_CLAVE" ) . '3m41l' ) ) )
